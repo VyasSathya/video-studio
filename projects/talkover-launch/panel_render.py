@@ -1,6 +1,6 @@
 """Render Talkover's real floating panel (src/voice_panel.py, unchanged) frame by frame, offscreen, from timeline.json.
 
-    <talkover>\\.venv\\Scripts\\python.exe projects\\talkover-demo\\panel_render.py --talkover C:\\Dev\\talkover
+    <talkover>\\.venv\\Scripts\\python.exe projects\\talkover-demo\\panel_render.py --talkover <talkover checkout>
 
 The panel draws itself with PIL into a Win32 layered window. Here the window is swapped for an in-memory buffer and
 the clock for a virtual one, and the panel is driven through the same control files the speak hook and the mic

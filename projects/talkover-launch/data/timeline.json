@@ -125,7 +125,7 @@
      "e": 1.48
     }
    ],
-   "wav": "C:\\Dev\\video-studio\\projects\\talkover-demo\\build\\audio\\c1_0.wav",
+   "wav": "projects/talkover-demo/build/audio/c1_0.wav",
    "turn": 0,
    "k": 0
   },
@@ -227,7 +227,7 @@
      "e": 5.74
     }
    ],
-   "wav": "C:\\Dev\\video-studio\\projects\\talkover-demo\\build\\audio\\c1_1.wav",
+   "wav": "projects/talkover-demo/build/audio/c1_1.wav",
    "turn": 0,
    "k": 1
   },
@@ -339,7 +339,7 @@
      "e": 6.48
     }
    ],
-   "wav": "C:\\Dev\\video-studio\\projects\\talkover-demo\\build\\audio\\c1_2.wav",
+   "wav": "projects/talkover-demo/build/audio/c1_2.wav",
    "turn": 0,
    "k": 2
   },
@@ -406,7 +406,7 @@
      "e": 2.92
     }
    ],
-   "wav": "C:\\Dev\\video-studio\\projects\\talkover-demo\\build\\audio\\c1_3.wav",
+   "wav": "projects/talkover-demo/build/audio/c1_3.wav",
    "turn": 0,
    "k": 3,
    "cut": true
@@ -569,7 +569,7 @@
      "e": 2.08
     }
    ],
-   "wav": "C:\\Dev\\video-studio\\projects\\talkover-demo\\build\\audio\\c2_0.wav",
+   "wav": "projects/talkover-demo/build/audio/c2_0.wav",
    "turn": 1,
    "k": 0
   },
@@ -696,7 +696,7 @@
      "e": 6.52
     }
    ],
-   "wav": "C:\\Dev\\video-studio\\projects\\talkover-demo\\build\\audio\\c2_1.wav",
+   "wav": "projects/talkover-demo/build/audio/c2_1.wav",
    "turn": 1,
    "k": 1
   },
@@ -738,7 +738,7 @@
      "e": 1.04
     }
    ],
-   "wav": "C:\\Dev\\video-studio\\projects\\talkover-demo\\build\\audio\\c2_2.wav",
+   "wav": "projects/talkover-demo/build/audio/c2_2.wav",
    "turn": 1,
    "k": 2
   },
@@ -880,7 +880,7 @@
      "e": 6.06
     }
    ],
-   "wav": "C:\\Dev\\video-studio\\projects\\talkover-demo\\build\\audio\\c2_3.wav",
+   "wav": "projects/talkover-demo/build/audio/c2_3.wav",
    "turn": 1,
    "k": 3
   },
