@@ -1,0 +1,913 @@
+{
+ "fps": 30,
+ "title_s": 2.6,
+ "scene": [
+  2.6,
+  55.938
+ ],
+ "end": [
+  55.938,
+  59.538
+ ],
+ "duration": 59.538,
+ "events": [
+  {
+   "kind": "you",
+   "t": 3.3,
+   "dur": 2.812,
+   "text": "Hey Claude, what does the install script do?",
+   "heard": "Hey Claude, what does the install script do?",
+   "words": [
+    {
+     "w": "Hey",
+     "s": 0.0,
+     "e": 0.18
+    },
+    {
+     "w": "Claude,",
+     "s": 0.18,
+     "e": 0.72
+    },
+    {
+     "w": "what",
+     "s": 0.8,
+     "e": 0.92
+    },
+    {
+     "w": "does",
+     "s": 0.92,
+     "e": 1.08
+    },
+    {
+     "w": "the",
+     "s": 1.08,
+     "e": 1.2
+    },
+    {
+     "w": "install",
+     "s": 1.2,
+     "e": 1.62
+    },
+    {
+     "w": "script",
+     "s": 1.62,
+     "e": 1.96
+    },
+    {
+     "w": "do?",
+     "s": 1.96,
+     "e": 2.34
+    }
+   ],
+   "turn": 0
+  },
+  {
+   "kind": "typed",
+   "t": 7.012,
+   "text": "Hey Claude, what does the install script do?",
+   "heard": "Hey Claude, what does the install script do?",
+   "turn": 0
+  },
+  {
+   "kind": "tool",
+   "t": 7.712,
+   "text": "Read install.ps1",
+   "turn": 0,
+   "diff": null
+  },
+  {
+   "kind": "reply",
+   "t": 9.062,
+   "text": "It sets up Talkover in one go. It builds a Python virtual environment with the right packages, then uses Docker to start two speech engines: Whisper to turn your speech into text, and Kokoro to read replies out loud. It downloads the Whisper model too. Next it adds Talkover's hooks to your Claude Code settings file. If you ask for them, it can also use your GPU, start Talkover when you log in, and add a listener for the word \"stop\". It ends with a health check.",
+   "turn": 0,
+   "think_from": 7.012
+  },
+  {
+   "kind": "chunk",
+   "t": 9.412,
+   "dur": 1.927,
+   "full": 1.927,
+   "text": "It sets up Talkover in one go.",
+   "words": [
+    {
+     "w": "It",
+     "s": 0.0,
+     "e": 0.12
+    },
+    {
+     "w": "sets",
+     "s": 0.12,
+     "e": 0.3
+    },
+    {
+     "w": "up",
+     "s": 0.3,
+     "e": 0.46
+    },
+    {
+     "w": "talkover",
+     "s": 0.46,
+     "e": 0.88
+    },
+    {
+     "w": "in",
+     "s": 0.88,
+     "e": 1.08
+    },
+    {
+     "w": "one",
+     "s": 1.08,
+     "e": 1.24
+    },
+    {
+     "w": "go.",
+     "s": 1.24,
+     "e": 1.48
+    }
+   ],
+   "wav": "C:\\Dev\\video-studio\\projects\\talkover-demo\\build\\audio\\c1_0.wav",
+   "turn": 0,
+   "k": 0
+  },
+  {
+   "kind": "chunk",
+   "t": 11.459,
+   "dur": 6.296,
+   "full": 6.296,
+   "text": "It builds a Python virtual environment with the right packages, then uses Docker to start two speech engines:",
+   "words": [
+    {
+     "w": "It",
+     "s": 0.0,
+     "e": 0.1
+    },
+    {
+     "w": "builds",
+     "s": 0.1,
+     "e": 0.36
+    },
+    {
+     "w": "a",
+     "s": 0.36,
+     "e": 0.5
+    },
+    {
+     "w": "Python",
+     "s": 0.5,
+     "e": 0.88
+    },
+    {
+     "w": "virtual",
+     "s": 0.88,
+     "e": 1.3
+    },
+    {
+     "w": "environment",
+     "s": 1.3,
+     "e": 1.86
+    },
+    {
+     "w": "with",
+     "s": 1.86,
+     "e": 2.08
+    },
+    {
+     "w": "the",
+     "s": 2.08,
+     "e": 2.16
+    },
+    {
+     "w": "right",
+     "s": 2.16,
+     "e": 2.32
+    },
+    {
+     "w": "packages,",
+     "s": 2.32,
+     "e": 2.86
+    },
+    {
+     "w": "then",
+     "s": 3.32,
+     "e": 3.6
+    },
+    {
+     "w": "uses",
+     "s": 3.6,
+     "e": 3.9
+    },
+    {
+     "w": "Docker",
+     "s": 3.9,
+     "e": 4.28
+    },
+    {
+     "w": "to",
+     "s": 4.28,
+     "e": 4.54
+    },
+    {
+     "w": "start",
+     "s": 4.54,
+     "e": 4.78
+    },
+    {
+     "w": "two",
+     "s": 4.78,
+     "e": 5.06
+    },
+    {
+     "w": "-speech",
+     "s": 5.06,
+     "e": 5.4
+    },
+    {
+     "w": "engines.",
+     "s": 5.4,
+     "e": 5.74
+    }
+   ],
+   "wav": "C:\\Dev\\video-studio\\projects\\talkover-demo\\build\\audio\\c1_1.wav",
+   "turn": 0,
+   "k": 1
+  },
+  {
+   "kind": "chunk",
+   "t": 17.875,
+   "dur": 6.974,
+   "full": 6.974,
+   "text": "Whisper to turn your speech into text, and Kokoro to read replies out loud. It downloads the Whisper model too.",
+   "words": [
+    {
+     "w": "Whisper",
+     "s": 0.0,
+     "e": 0.32
+    },
+    {
+     "w": "to",
+     "s": 0.32,
+     "e": 0.48
+    },
+    {
+     "w": "turn",
+     "s": 0.48,
+     "e": 0.68
+    },
+    {
+     "w": "your",
+     "s": 0.68,
+     "e": 0.82
+    },
+    {
+     "w": "speech",
+     "s": 0.82,
+     "e": 1.04
+    },
+    {
+     "w": "into",
+     "s": 1.04,
+     "e": 1.28
+    },
+    {
+     "w": "text,",
+     "s": 1.28,
+     "e": 1.66
+    },
+    {
+     "w": "and",
+     "s": 2.0,
+     "e": 2.16
+    },
+    {
+     "w": "Kokoro",
+     "s": 2.16,
+     "e": 2.6
+    },
+    {
+     "w": "to",
+     "s": 2.6,
+     "e": 2.76
+    },
+    {
+     "w": "read",
+     "s": 2.76,
+     "e": 3.04
+    },
+    {
+     "w": "replies",
+     "s": 3.04,
+     "e": 3.54
+    },
+    {
+     "w": "out",
+     "s": 3.54,
+     "e": 3.86
+    },
+    {
+     "w": "loud.",
+     "s": 3.86,
+     "e": 4.12
+    },
+    {
+     "w": "It",
+     "s": 4.74,
+     "e": 4.86
+    },
+    {
+     "w": "downloads",
+     "s": 4.86,
+     "e": 5.28
+    },
+    {
+     "w": "the",
+     "s": 5.28,
+     "e": 5.58
+    },
+    {
+     "w": "Whisper",
+     "s": 5.58,
+     "e": 5.92
+    },
+    {
+     "w": "model",
+     "s": 5.92,
+     "e": 6.2
+    },
+    {
+     "w": "too.",
+     "s": 6.2,
+     "e": 6.48
+    }
+   ],
+   "wav": "C:\\Dev\\video-studio\\projects\\talkover-demo\\build\\audio\\c1_2.wav",
+   "turn": 0,
+   "k": 2
+  },
+  {
+   "kind": "chunk",
+   "t": 24.969,
+   "dur": 2.362,
+   "full": 3.386,
+   "text": "Next it adds Talkover's hooks to your Claude Code settings file.",
+   "words": [
+    {
+     "w": "Next",
+     "s": 0.0,
+     "e": 0.24
+    },
+    {
+     "w": "it",
+     "s": 0.24,
+     "e": 0.42
+    },
+    {
+     "w": "adds",
+     "s": 0.42,
+     "e": 0.6
+    },
+    {
+     "w": "talkovers",
+     "s": 0.6,
+     "e": 1.08
+    },
+    {
+     "w": "hooks",
+     "s": 1.08,
+     "e": 1.38
+    },
+    {
+     "w": "to",
+     "s": 1.38,
+     "e": 1.68
+    },
+    {
+     "w": "your",
+     "s": 1.68,
+     "e": 1.76
+    },
+    {
+     "w": "Claude",
+     "s": 1.76,
+     "e": 2.06
+    },
+    {
+     "w": "code",
+     "s": 2.06,
+     "e": 2.24
+    },
+    {
+     "w": "settings",
+     "s": 2.24,
+     "e": 2.58
+    },
+    {
+     "w": "file.",
+     "s": 2.58,
+     "e": 2.92
+    }
+   ],
+   "wav": "C:\\Dev\\video-studio\\projects\\talkover-demo\\build\\audio\\c1_3.wav",
+   "turn": 0,
+   "k": 3,
+   "cut": true
+  },
+  {
+   "kind": "cut",
+   "t": 27.331,
+   "you_t": 26.831,
+   "turn": 0,
+   "k": 3
+  },
+  {
+   "kind": "you",
+   "t": 26.831,
+   "dur": 3.279,
+   "text": "Wait, make it print how long the install took at the end.",
+   "heard": "Wait, make it print how long the install took at the end.",
+   "words": [
+    {
+     "w": "Wait,",
+     "s": 0.0,
+     "e": 0.24
+    },
+    {
+     "w": "make",
+     "s": 0.44,
+     "e": 0.54
+    },
+    {
+     "w": "it",
+     "s": 0.54,
+     "e": 0.68
+    },
+    {
+     "w": "print",
+     "s": 0.68,
+     "e": 0.84
+    },
+    {
+     "w": "how",
+     "s": 0.84,
+     "e": 1.04
+    },
+    {
+     "w": "long",
+     "s": 1.04,
+     "e": 1.32
+    },
+    {
+     "w": "the",
+     "s": 1.32,
+     "e": 1.54
+    },
+    {
+     "w": "install",
+     "s": 1.54,
+     "e": 2.0
+    },
+    {
+     "w": "took",
+     "s": 2.0,
+     "e": 2.26
+    },
+    {
+     "w": "at",
+     "s": 2.26,
+     "e": 2.4
+    },
+    {
+     "w": "the",
+     "s": 2.4,
+     "e": 2.52
+    },
+    {
+     "w": "end.",
+     "s": 2.52,
+     "e": 2.8
+    }
+   ],
+   "turn": 1
+  },
+  {
+   "kind": "typed",
+   "t": 31.01,
+   "text": "Wait, make it print how long the install took at the end. [voice: you were cut off after: \"Next it adds Talkover's hooks to your Claude Code settings file.\"]",
+   "heard": "Wait, make it print how long the install took at the end.",
+   "turn": 1
+  },
+  {
+   "kind": "tool",
+   "t": 31.71,
+   "text": "Edit install.ps1",
+   "turn": 1,
+   "diff": [
+    " $ErrorActionPreference = 'Stop'",
+    "+$Timer = [System.Diagnostics.Stopwatch]::StartNew()",
+    " ...",
+    " Write-Host 'Installed. Start it with:  ...' -ForegroundColor Green",
+    "+$Timer.Stop()",
+    "+Write-Host (\"Install took {0}m {1}s\" -f ...) -ForegroundColor Green"
+   ]
+  },
+  {
+   "kind": "reply",
+   "t": 33.46,
+   "text": "The install script now prints how long it took, in minutes and seconds, right after the \"Installed\" message. A timer starts at the top of the script and stops at the end. Where I got cut off before: after the hooks, the script can add a startup shortcut for when you log in, and then it runs a health check on the speech engines.",
+   "turn": 1,
+   "think_from": 31.01
+  },
+  {
+   "kind": "chunk",
+   "t": 33.81,
+   "dur": 2.458,
+   "full": 2.458,
+   "text": "The install script now prints how long it took,",
+   "words": [
+    {
+     "w": "The",
+     "s": 0.0,
+     "e": 0.12
+    },
+    {
+     "w": "install",
+     "s": 0.12,
+     "e": 0.48
+    },
+    {
+     "w": "script",
+     "s": 0.48,
+     "e": 0.8
+    },
+    {
+     "w": "now",
+     "s": 0.8,
+     "e": 1.14
+    },
+    {
+     "w": "prints",
+     "s": 1.14,
+     "e": 1.38
+    },
+    {
+     "w": "how",
+     "s": 1.38,
+     "e": 1.58
+    },
+    {
+     "w": "long",
+     "s": 1.58,
+     "e": 1.78
+    },
+    {
+     "w": "it",
+     "s": 1.78,
+     "e": 1.9
+    },
+    {
+     "w": "took.",
+     "s": 1.9,
+     "e": 2.08
+    }
+   ],
+   "wav": "C:\\Dev\\video-studio\\projects\\talkover-demo\\build\\audio\\c2_0.wav",
+   "turn": 1,
+   "k": 0
+  },
+  {
+   "kind": "chunk",
+   "t": 36.388,
+   "dur": 6.955,
+   "full": 6.955,
+   "text": "in minutes and seconds, right after the \"Installed\" message. A timer starts at the top of the script and stops at the end.",
+   "words": [
+    {
+     "w": "in",
+     "s": 0.0,
+     "e": 0.14
+    },
+    {
+     "w": "minutes",
+     "s": 0.14,
+     "e": 0.36
+    },
+    {
+     "w": "and",
+     "s": 0.36,
+     "e": 0.58
+    },
+    {
+     "w": "seconds,",
+     "s": 0.58,
+     "e": 0.98
+    },
+    {
+     "w": "right",
+     "s": 1.34,
+     "e": 1.6
+    },
+    {
+     "w": "after",
+     "s": 1.6,
+     "e": 1.94
+    },
+    {
+     "w": "the",
+     "s": 1.94,
+     "e": 2.1
+    },
+    {
+     "w": "installed",
+     "s": 2.1,
+     "e": 2.6
+    },
+    {
+     "w": "message.",
+     "s": 2.6,
+     "e": 3.04
+    },
+    {
+     "w": "A",
+     "s": 3.74,
+     "e": 3.84
+    },
+    {
+     "w": "timer",
+     "s": 3.84,
+     "e": 4.12
+    },
+    {
+     "w": "starts",
+     "s": 4.12,
+     "e": 4.46
+    },
+    {
+     "w": "at",
+     "s": 4.46,
+     "e": 4.66
+    },
+    {
+     "w": "the",
+     "s": 4.66,
+     "e": 4.74
+    },
+    {
+     "w": "top",
+     "s": 4.74,
+     "e": 4.96
+    },
+    {
+     "w": "of",
+     "s": 4.96,
+     "e": 5.08
+    },
+    {
+     "w": "the",
+     "s": 5.08,
+     "e": 5.16
+    },
+    {
+     "w": "script",
+     "s": 5.16,
+     "e": 5.42
+    },
+    {
+     "w": "and",
+     "s": 5.42,
+     "e": 5.72
+    },
+    {
+     "w": "stops",
+     "s": 5.72,
+     "e": 5.96
+    },
+    {
+     "w": "at",
+     "s": 5.96,
+     "e": 6.18
+    },
+    {
+     "w": "the",
+     "s": 6.18,
+     "e": 6.28
+    },
+    {
+     "w": "end.",
+     "s": 6.28,
+     "e": 6.52
+    }
+   ],
+   "wav": "C:\\Dev\\video-studio\\projects\\talkover-demo\\build\\audio\\c2_1.wav",
+   "turn": 1,
+   "k": 1
+  },
+  {
+   "kind": "chunk",
+   "t": 43.463,
+   "dur": 1.582,
+   "full": 1.582,
+   "text": "Where I got cut off before:",
+   "words": [
+    {
+     "w": "where",
+     "s": 0.0,
+     "e": 0.14
+    },
+    {
+     "w": "I",
+     "s": 0.14,
+     "e": 0.24
+    },
+    {
+     "w": "got",
+     "s": 0.24,
+     "e": 0.4
+    },
+    {
+     "w": "cut",
+     "s": 0.4,
+     "e": 0.6
+    },
+    {
+     "w": "off",
+     "s": 0.6,
+     "e": 0.74
+    },
+    {
+     "w": "before.",
+     "s": 0.74,
+     "e": 1.04
+    }
+   ],
+   "wav": "C:\\Dev\\video-studio\\projects\\talkover-demo\\build\\audio\\c2_2.wav",
+   "turn": 1,
+   "k": 2
+  },
+  {
+   "kind": "chunk",
+   "t": 45.165,
+   "dur": 6.64,
+   "full": 6.64,
+   "text": "after the hooks, the script can add a startup shortcut for when you log in, and then it runs a health check on the speech engines.",
+   "words": [
+    {
+     "w": "After",
+     "s": 0.0,
+     "e": 0.26
+    },
+    {
+     "w": "the",
+     "s": 0.26,
+     "e": 0.4
+    },
+    {
+     "w": "hooks,",
+     "s": 0.4,
+     "e": 0.62
+    },
+    {
+     "w": "the",
+     "s": 0.94,
+     "e": 1.04
+    },
+    {
+     "w": "script",
+     "s": 1.04,
+     "e": 1.28
+    },
+    {
+     "w": "can",
+     "s": 1.28,
+     "e": 1.54
+    },
+    {
+     "w": "add",
+     "s": 1.54,
+     "e": 1.7
+    },
+    {
+     "w": "a",
+     "s": 1.7,
+     "e": 1.78
+    },
+    {
+     "w": "startup",
+     "s": 1.78,
+     "e": 2.06
+    },
+    {
+     "w": "shortcut",
+     "s": 2.06,
+     "e": 2.58
+    },
+    {
+     "w": "for",
+     "s": 2.58,
+     "e": 2.82
+    },
+    {
+     "w": "when",
+     "s": 2.82,
+     "e": 2.96
+    },
+    {
+     "w": "you",
+     "s": 2.96,
+     "e": 3.04
+    },
+    {
+     "w": "log",
+     "s": 3.04,
+     "e": 3.3
+    },
+    {
+     "w": "in,",
+     "s": 3.3,
+     "e": 3.56
+    },
+    {
+     "w": "and",
+     "s": 3.9,
+     "e": 4.14
+    },
+    {
+     "w": "then",
+     "s": 4.14,
+     "e": 4.24
+    },
+    {
+     "w": "it",
+     "s": 4.24,
+     "e": 4.36
+    },
+    {
+     "w": "runs",
+     "s": 4.36,
+     "e": 4.56
+    },
+    {
+     "w": "a",
+     "s": 4.56,
+     "e": 4.7
+    },
+    {
+     "w": "health",
+     "s": 4.7,
+     "e": 4.9
+    },
+    {
+     "w": "check",
+     "s": 4.9,
+     "e": 5.2
+    },
+    {
+     "w": "on",
+     "s": 5.2,
+     "e": 5.38
+    },
+    {
+     "w": "the",
+     "s": 5.38,
+     "e": 5.5
+    },
+    {
+     "w": "speech",
+     "s": 5.5,
+     "e": 5.68
+    },
+    {
+     "w": "engines.",
+     "s": 5.68,
+     "e": 6.06
+    }
+   ],
+   "wav": "C:\\Dev\\video-studio\\projects\\talkover-demo\\build\\audio\\c2_3.wav",
+   "turn": 1,
+   "k": 3
+  },
+  {
+   "kind": "you",
+   "t": 52.425,
+   "dur": 1.313,
+   "text": "Stop listening.",
+   "heard": "Stop listening.",
+   "words": [
+    {
+     "w": "Stop",
+     "s": 0.0,
+     "e": 0.3
+    },
+    {
+     "w": "listening.",
+     "s": 0.3,
+     "e": 0.72
+    }
+   ],
+   "turn": 2
+  },
+  {
+   "kind": "mute",
+   "t": 54.638,
+   "turn": 2
+  }
+ ]
+}

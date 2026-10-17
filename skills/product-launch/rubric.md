@@ -32,6 +32,11 @@ more.
 
 Overall score: 1 to 10, where 8 means "I would believe a good design team made this".
 
+The gate is not this rubric alone. There is an approved reference film (skills/product-launch/REFERENCE.md: the
+Talkover launch film, approved by Vyas on 2026-10-17); a new film must also win or tie against it in a pairwise
+comparison, run in both orders by fresh judges. This rubric is advisory until a judge is calibrated on Vyas's
+own approve/reject labels.
+
 Reply format, one line per item:
 `<n>. PASS|FAIL - frame <k> - <reason in at most 15 words>` then `Overall: <score>` then at most three fixes,
 most important first.

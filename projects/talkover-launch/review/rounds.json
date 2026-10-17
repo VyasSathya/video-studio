@@ -1,0 +1,58 @@
+[
+ {
+  "round": "r1",
+  "checks": "20/20 pass",
+  "judge": "FAIL, 10 of 15 no",
+  "pairwise": "not run",
+  "next": "New opener, engines readout removed, bigger second lines, caption kept away from type, close-ups capped, neutral light, state matches type, 9:16 line breaks"
+ },
+ {
+  "round": "r2",
+  "checks": "r1 plus one caption crop fix",
+  "judge": "not judged",
+  "pairwise": "not run",
+  "next": "Folded into r3"
+ },
+ {
+  "round": "r3",
+  "checks": "20/20 pass",
+  "judge": "self-review of strips before judging",
+  "pairwise": "not run",
+  "next": "Closed a 0.5 s gap where the caption fell back to an old line; widened one shot so a long line fits"
+ },
+ {
+  "round": "r4",
+  "checks": "20/20 pass",
+  "judge": "FAIL, 6 of 15 no",
+  "pairwise": "new film wins in both orders",
+  "next": "Tilt-in opener, word-by-word type, brighter second lines, 2 s Fully local, 9:16 rebuilt with bigger panel and an orb push-in"
+ },
+ {
+  "round": "r5",
+  "checks": "22/22 pass (blank-frame gate added; one empty beat at 16.75 s caught and fixed)",
+  "judge": "FAIL, 5 of 15 no",
+  "pairwise": "new film wins in both orders",
+  "next": "One left title margin in 16:9, orb colour spills into the room light, end card hold cut to about 2 s, 9:16 rebuilt with close crops only"
+ },
+ {
+  "round": "r6",
+  "checks": "22/22 pass",
+  "judge": "FAIL, 6 of 15 no",
+  "pairwise": "new film wins in both orders",
+  "next": "Edges between buttons, one text focus per shot, 1 s / 2-2.5 s rhythm, 9:16 caption shots at full width, words fade as they rise"
+ },
+ {
+  "round": "r7",
+  "checks": "22/22 pass",
+  "judge": "FAIL, 8 of 15 no (fifth judged round, cap reached)",
+  "pairwise": "new film wins in both orders",
+  "next": "Two regressions it found fixed in the delivered cut (title over panel at 11.2 s; listen beat over the thinking orb); not judged again"
+ },
+ {
+  "round": "final",
+  "checks": "22/22 pass",
+  "judge": "not judged again (five-round cap)",
+  "pairwise": "",
+  "next": "Delivered for Vyas to judge; nothing posted or pushed"
+ }
+]

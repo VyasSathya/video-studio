@@ -5,6 +5,10 @@ description: Make a short, faceless product launch film (20 to 30 s, or a 10 s c
 
 # Product launch film
 
+The approved reference is the Talkover launch film (REFERENCE.md, `projects/talkover-launch`): Vyas's verdict
+"Holy shit, this is amazing ... This is so good". Read REFERENCE.md first; match its approach, and judge every new
+film pairwise against its frame strips.
+
 Code: `studio/launch.py` (`render(brief, out_mp4, width, height) -> manifest`), screens from
 `studio/capture.mjs`, checks from `studio/verify.py`, music from `studio/music.launch_track`.
 Worked example: `projects/crewboard-launch` (capture.json, brief.json, render.py).
