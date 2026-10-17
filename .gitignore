@@ -1,0 +1,9 @@
+node_modules/
+tools/
+__pycache__/
+*.pyc
+projects/*/build/
+projects/*/out/
+projects/*/qa/
+projects/*/render.log
+.hyperframes/

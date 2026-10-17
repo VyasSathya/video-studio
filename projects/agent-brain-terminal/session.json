@@ -1,0 +1,44 @@
+[
+    {
+        "label":  "Route a folder",
+        "cmd":  "brain route --cwd examples/todo-api/src | ConvertFrom-Json | select project, role",
+        "out":  "project  role  \n-------  ----  \ntodo-api source"
+    },
+    {
+        "label":  "Save a handoff",
+        "cmd":  "brain handoff --file examples/handoff.example.json | ConvertFrom-Json | select id",
+        "out":  "id                              \n--                              \n5010ff80a8db447db8bc04f2350eef85"
+    },
+    {
+        "label":  "What is current",
+        "cmd":  "brain current --project todo-api | ConvertFrom-Json | % tasks | select task, evidence_changed",
+        "out":  "task              evidence_changed\n----              ----------------\ncursor-pagination            False"
+    },
+    {
+        "label":  "Save it again without saying what it replaces",
+        "cmd":  "brain handoff --file examples/handoff.example.json",
+        "out":  "agent-brain error: Task cursor-pagination already has current handoff(s) [\u00275010ff80a8db447db8bc04f2350eef85\u0027]; list them in \"supersedes\" (carrying their remaining items), or set \"parallel\": true for a deliberate branch.",
+        "highlight":  [
+                          [
+                              "agent-brain error:",
+                              "red"
+                          ]
+                      ]
+    },
+    {
+        "label":  "Change the file the handoff cites",
+        "cmd":  "Add-Content examples/todo-api/NOTES.md \"Staging deploy started.\"",
+        "out":  ""
+    },
+    {
+        "label":  "What is current now",
+        "cmd":  "brain current --project todo-api | ConvertFrom-Json | % tasks | select task, evidence_changed",
+        "out":  "task              evidence_changed\n----              ----------------\ncursor-pagination             True",
+        "highlight":  [
+                          [
+                              "True$",
+                              "amber"
+                          ]
+                      ]
+    }
+]

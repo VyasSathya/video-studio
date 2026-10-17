@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>agent-brain: how the shared memory works</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf9; --card: #ffffff; --line: #e4e4e1; --text: #18181b; --muted: #6b6b73; --faint: #a1a1a8;
+    --in: #3b6cf6; --ev: #c2410c; --chip: #f4f4f2; --hl: #fff4e6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0d0d10; --card: #141418; --line: #27272d; --text: #ececf0; --muted: #9a9aa4; --faint: #63636c;
+            --in: #7d9bff; --ev: #fb923c; --chip: #1b1b20; --hl: #2a1c10; }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  #frame { position: relative; width: 1600px; height: 780px; background: var(--bg); overflow: hidden; }
+  #inner { position: absolute; left: 0; top: 0; width: 1600px; height: 860px; transform: translateY(-64px); }
+  .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+  .card { position: absolute; background: var(--card); border: 1px solid var(--line); border-radius: 16px; }
+  .agent { left: 56px; width: 300px; height: 96px; padding: 22px 26px; }
+  .agent b { display: block; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+  .agent span { display: block; margin-top: 6px; font-size: 15px; color: var(--muted); }
+  .any { position: absolute; left: 56px; width: 300px; text-align: center; font-size: 15px; color: var(--faint); }
+  #brain { left: 640px; top: 120px; width: 420px; height: 520px; overflow: hidden; }
+  #brain .head { height: 80px; padding: 22px 28px; border-bottom: 1px solid var(--line); display: flex; align-items: baseline; justify-content: space-between; }
+  #brain .head b { font-size: 21px; font-weight: 500; }
+  #brain .head span { font-size: 15px; color: var(--muted); }
+  .row { height: 88px; padding: 20px 28px; border-bottom: 1px solid var(--line); }
+  .row:last-child { border-bottom: 0; }
+  .row b { display: block; font-size: 17px; font-weight: 500; }
+  .row span { display: block; margin-top: 6px; font-size: 15px; color: var(--muted); }
+  #repo { left: 1204px; top: 300px; width: 340px; height: 206px; overflow: hidden; }
+  #repo .head { padding: 20px 24px 14px; font-size: 15px; color: var(--muted); }
+  #repo .head b { display: block; color: var(--text); font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+  #repo .code { margin: 0 12px; border: 1px solid var(--line); border-radius: 10px; padding: 10px 0; font-size: 12.5px; line-height: 1.75; }
+  #repo .ln { display: flex; gap: 12px; padding: 0 12px; white-space: nowrap; overflow: hidden; }
+  #repo .ln i { font-style: normal; color: var(--faint); width: 16px; text-align: right; flex: none; }
+  #repo .ln.on { background: var(--hl); }
+  #repo .file { padding: 12px 24px 0; font-size: 13px; color: var(--faint); }
+  svg#wires { position: absolute; inset: 0; overflow: visible; }
+  .w { fill: none; stroke-width: 2; }
+  .w.in { stroke: var(--in); } .w.out { stroke: var(--muted); } .w.ev { stroke: var(--ev); }
+  .lab { position: absolute; font-size: 15px; line-height: 1.35; text-align: center; color: var(--muted); }
+  .lab b { display: block; font-weight: 500; color: var(--text); }
+  .lab.in b { color: var(--in); } .lab.ev b { color: var(--ev); }
+  #handoff { left: 56px; top: 690px; width: 1488px; height: 128px; padding: 22px 28px; }
+  #handoff .t { font-size: 15px; color: var(--muted); }
+  #handoff .t b { color: var(--text); font-weight: 600; font-size: 17px; margin-right: 10px; }
+  .chips { display: flex; gap: 10px; margin-top: 16px; align-items: center; flex-wrap: nowrap; }
+  .chip { background: var(--chip); border: 1px solid var(--line); border-radius: 999px; padding: 8px 15px; font-size: 15px; white-space: nowrap; }
+  .chip.ev { border-color: color-mix(in srgb, var(--ev) 45%, var(--line)); }
+  .chip.ev span { color: var(--ev); }
+  .rule { margin-left: auto; font-size: 15px; color: var(--muted); white-space: nowrap; }
+  #handoff .rule b { color: var(--text); font-weight: 500; font-size: 15px; margin: 0; }
+</style>
+</head>
+<body>
+<div id="frame"><div id="inner">
+  <div class="card agent" style="top:212px"><b>Claude Code</b><span>any session, any account</span></div>
+  <div class="card agent" style="top:412px"><b>Codex</b><span>same brain, same rules</span></div>
+  <div class="any" style="top:528px">or anything that can run a command</div>
+
+  <div class="card" id="brain">
+    <div class="head"><b class="mono">~/.agent-brain</b><span>plain files, one CLI</span></div>
+    <div class="row"><b class="mono">facts.md &middot; user.md</b><span>injected at every session start</span></div>
+    <div class="row"><b class="mono">routes.json</b><span>folder to project, longest path wins</span></div>
+    <div class="row"><b class="mono">handoffs/&lt;project&gt;/</b><span>current heads per task; old ones to archive/</span></div>
+    <div class="row"><b class="mono">projects/ &middot; notes.md</b><span>searched on demand, never injected</span></div>
+    <div class="row"><b class="mono">captures/</b><span>last reply of each session, unreviewed</span></div>
+  </div>
+
+  <div class="card" id="repo">
+    <div class="head"><b>Your repo</b>the source the handoff cites</div>
+    <div class="code mono">
+      <div class="ln on"><i>9</i>Fixed: the cursor now orders by</div>
+      <div class="ln on"><i>10</i>Not yet deployed to staging.</div>
+    </div>
+    <div class="file mono">todo-api/NOTES.md &middot; sha256 stored</div>
+  </div>
+
+  <svg id="wires" width="1600" height="860" viewBox="0 0 1600 860">
+    <defs>
+      <marker id="ai" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--in)"/></marker>
+      <marker id="ao" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/></marker>
+      <marker id="ae" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--ev)"/></marker>
+    </defs>
+    <!-- the two agents share one bus -->
+    <path class="w out" d="M356,260 H396 M356,460 H396 M396,244 V596" />
+    <!-- rows: facts 244, routes 332, handoffs 420, projects 508, captures 596 -->
+    <path class="w in"  d="M640,244 H402" marker-end="url(#ai)" />
+    <path class="w out" d="M402,332 H634" marker-start="url(#ao)" marker-end="url(#ao)" />
+    <path class="w out" d="M396,420 H634" marker-end="url(#ao)" />
+    <path class="w out" d="M396,508 H634" marker-end="url(#ao)" />
+    <path class="w out" d="M396,596 H634" marker-end="url(#ao)" />
+    <!-- evidence -->
+    <path class="w ev" d="M1060,404 H1198" marker-end="url(#ae)" />
+    <path class="w ev" d="M1204,452 H1066" marker-end="url(#ae)" stroke-dasharray="5 5" />
+  </svg>
+
+  <div class="lab in" style="left:404px;top:192px;width:236px"><b>SessionStart hook</b>facts + newest handoffs</div>
+  <div class="lab" style="left:410px;top:296px;width:224px"><b>route &middot; current</b></div>
+  <div class="lab" style="left:410px;top:384px;width:224px"><b>handoff</b></div>
+  <div class="lab" style="left:410px;top:472px;width:224px"><b>search &middot; read</b></div>
+  <div class="lab" style="left:410px;top:560px;width:224px"><b>Stop hook</b></div>
+  <div class="lab ev" style="left:1062px;top:344px;width:140px"><b>evidence</b>path:line + quote</div>
+  <div class="lab ev" style="left:1062px;top:462px;width:140px">file moved on: <b style="display:inline">evidence_changed</b></div>
+
+  <div class="card" id="handoff">
+    <div class="t" style="display:flex"><span><b>A handoff</b>append-only; an update names the one it supersedes</span><span class="rule">Drop a <b>remaining</b> item without resolving it: <b>refused</b></span></div>
+    <div class="chips">
+      <div class="chip">completed</div><div class="chip">remaining</div><div class="chip">validated</div>
+      <div class="chip">released</div><div class="chip">constraints</div>
+      <div class="chip ev mono"><span>NOTES.md:9</span> "Fixed: the cursor now orders by (created_at, id)."</div>
+    </div>
+  </div>
+</div></div>
+</body>
+</html>

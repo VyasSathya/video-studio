@@ -1,0 +1,17 @@
+{
+  "url": "http://127.0.0.1:7791/",
+  "width": 1200,
+  "height": 780,
+  "scale": 2,
+  "colorScheme": "dark",
+  "fps": 30,
+  "settle_ms": 1200,
+  "steps": [
+    {"do": "wait", "s": 0.8},
+    {"do": "click", "sel": "[data-live=\"c:demo-dark\"]", "s": 0.9, "after": 2.0},
+    {"do": "click", "sel": "[data-live=\"a:demo-contrast\"]", "s": 0.7, "after": 1.8},
+    {"do": "click", "sel": "[data-sel=\"dark-mode\"]", "s": 0.8, "after": 1.8},
+    {"do": "click", "sel": "[data-mode=\"now\"]", "s": 0.8, "after": 1.6},
+    {"do": "click", "sel": "[data-ans]", "s": 0.8, "after": 1.8}
+  ]
+}

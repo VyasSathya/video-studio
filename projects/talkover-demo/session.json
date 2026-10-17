@@ -1,0 +1,38 @@
+{
+  "about": "One recorded exchange for the Talkover demo. 'you' lines are synthetic (Kokoro am_michael); 'heard' is what Whisper (speaches, faster-whisper-small, Talkover's own request) transcribed from that audio; 'reply' is the real text a Claude Code agent (Opus 5.5) wrote while working in a throwaway copy of the talkover repo; 'tools' are the tools it actually used; 'diff' is the change it actually made.",
+  "repo": "talkover (throwaway copy at HEAD 295d120)",
+  "you_voice": "am_michael",
+  "claude_voice": "af_heart",
+  "claude_speed": 1.05,
+  "turns": [
+    {
+      "you": "Hey Claude, what does the install script do?",
+      "heard": "Hey Claude, what does the install script do?",
+      "sent": "Hey Claude, what does the install script do?",
+      "tools": ["Read install.ps1"],
+      "reply": "It sets up Talkover in one go. It builds a Python virtual environment with the right packages, then uses Docker to start two speech engines: Whisper to turn your speech into text, and Kokoro to read replies out loud. It downloads the Whisper model too. Next it adds Talkover's hooks to your Claude Code settings file. If you ask for them, it can also use your GPU, start Talkover when you log in, and add a listener for the word \"stop\". It ends with a health check.",
+      "cut_in_chunk": 3,
+      "cut_in_at": 0.55
+    },
+    {
+      "you": "Wait, make it print how long the install took at the end.",
+      "heard": "Wait, make it print how long the install took at the end.",
+      "sent": "Wait, make it print how long the install took at the end. [voice: you were cut off after: \"Next it adds Talkover's hooks to your Claude Code settings file.\"]",
+      "tools": ["Edit install.ps1"],
+      "diff": [
+        " $ErrorActionPreference = 'Stop'",
+        "+$Timer = [System.Diagnostics.Stopwatch]::StartNew()",
+        " ...",
+        " Write-Host 'Installed. Start it with:  ...' -ForegroundColor Green",
+        "+$Timer.Stop()",
+        "+Write-Host (\"Install took {0}m {1}s\" -f ...) -ForegroundColor Green"
+      ],
+      "reply": "The install script now prints how long it took, in minutes and seconds, right after the \"Installed\" message. A timer starts at the top of the script and stops at the end. Where I got cut off before: after the hooks, the script can add a startup shortcut for when you log in, and then it runs a health check on the speech engines."
+    },
+    {
+      "you": "Stop listening.",
+      "heard": "Stop listening.",
+      "command": "mute"
+    }
+  ]
+}
