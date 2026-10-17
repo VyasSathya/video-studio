@@ -1,7 +1,7 @@
 """Adapters for paid generation, wired but never spending on their own.
 
 Every call is a dry run that returns the exact request and its estimated cost, unless all three hold:
-  1. the provider key is set (HEYGEN_API_KEY, ELEVENLABS_API_KEY, FAL_KEY)
+  1. the provider key is set (HEYGEN_API_KEY, ELEVENLABS_API_KEY, FAL_KEY, KIE_API_KEY)
   2. STUDIO_ALLOW_SPEND=1 in the environment
   3. the call passes confirm=True
 Nothing in the sample pipelines calls these. Prices were read from the official pages on 2026-10-17 (see
@@ -147,6 +147,39 @@ def broll_clip(prompt, seconds=5, image_url=None, model="kling", aspect="9:16", 
     raise ValueError("model: kling | veo-fast | seedance")
 
 
+# kie.ai: one key in front of Kling, Veo, Seedance and image models; prepaid credits at $0.005 each (read 2026-10-17).
+# HTTP is always 200, so the "code" field is what says whether a call worked.
+KIE_PRICES = {"kling-3.0/video": 0.09, "kling-3.0/video.audio": 0.135}          # per second, pro 1080p
+
+
+def kie_clip(prompt, image_url, seconds=5, sound=False, model="kling-3.0/video", out=None, confirm=False, poll=6):
+    """Image to video through kie.ai (the image must already be at a URL; Kling follows the image's shape)."""
+    url = "https://api.kie.ai/api/v1/jobs/createTask"
+    body = {"model": model, "input": {"prompt": prompt, "image_urls": [image_url],
+                                      "duration": str(int(seconds)), "sound": bool(sound)}}
+    est = KIE_PRICES[model + (".audio" if sound else "")] * seconds
+    key, live = _gate("KIE_API_KEY", confirm)
+    if not live:
+        return dry("kie", "POST", url, body, est)
+    h = {"Authorization": "Bearer " + key}
+    sub = _http("POST", url, h, body)
+    if sub.get("code") != 200:
+        raise RuntimeError("kie createTask: %s" % sub)
+    tid = sub["data"]["taskId"]
+    while True:
+        st = _http("GET", "https://api.kie.ai/api/v1/jobs/recordInfo?taskId=" + tid, h)
+        state = (st.get("data") or {}).get("state")
+        if state in ("success", "fail"):
+            break
+        time.sleep(poll)
+    if state != "success":
+        raise RuntimeError("kie task failed: %s" % (st.get("data") or {}).get("failMsg"))
+    urls = json.loads(st["data"]["resultJson"]).get("resultUrls", [])
+    if out and urls:
+        open(out, "wb").write(_http("GET", urls[0], {}, raw=True, timeout=900))
+    return {"urls": urls, "credits": st["data"].get("creditsConsumed")}
+
+
 def estimate_short(seconds=30, chars=450):
     """What one 30 s vertical short would cost with each paid piece, for a yes/no."""
     return {
@@ -155,6 +188,7 @@ def estimate_short(seconds=30, chars=450):
         "ElevenLabs voice (flash)": round(PRICES["elevenlabs.tts.eleven_flash_v2_5"] * chars, 2),
         "ElevenLabs music bed": round(PRICES["elevenlabs.music"] * seconds, 2),
         "Kling 3 Pro B-roll, all 30 s": round(PRICES["fal.kling3pro"] * seconds, 2),
+        "Kling 3 Pro B-roll via kie.ai, all 30 s": round(KIE_PRICES["kling-3.0/video"] * seconds, 2),
         "Veo 3.1 Fast B-roll, all 30 s": round(PRICES["fal.veo31fast"] * seconds, 2),
         "Seedance 2.5 480p, all 30 s": round(PRICES["fal.seedance25.480p"] * seconds, 2),
         "MiniMax Music 3 (needs lyrics)": round(PRICES["fal.minimax_music3"] * seconds, 2),

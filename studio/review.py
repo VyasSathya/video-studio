@@ -75,6 +75,10 @@ def section(run_dir, base):
                            for i, s in enumerate(drafts["slides"]))
             items.append('<details><summary>Carousel slides</summary><div class="body"><div class="slides">%s'
                          '</div></div></details>' % imgs)
+    if m.get("critiques"):
+        rows = "".join('<li><b>%s</b> %s</li>' % (esc(c["head"]), esc(c["text"])) for c in m["critiques"])
+        items.append('<details><summary>Critique rounds</summary><div class="body"><ol class="crit">%s</ol>'
+                     '</div></details>' % rows)
     if m.get("decisions"):
         rows = "".join('<tr><td>%s</td><td>%.2f&ndash;%.2f</td><td>%s</td></tr>' % (
             esc(d["why"]), d["start"], d["end"], esc(d.get("text", ""))) for d in m["decisions"])
@@ -82,8 +86,11 @@ def section(run_dir, base):
                      % rows)
     src = m.get("source") or {}
     sub = " &middot; ".join(esc(x) for x in [m.get("created", ""), src.get("credit") or ""] if x)
-    return ('<section><h2>%s</h2><div class="sub">%s</div>%s</section>' % (esc(m.get("title") or run_dir.name),
-                                                                           sub, "".join(items)))
+    status = ""
+    if m.get("status"):
+        status = '<div class="status%s">%s</div>' % (" bad" if not m.get("passed", True) else "", esc(m["status"]))
+    return ('<section><h2>%s</h2><div class="sub">%s</div>%s%s</section>' % (
+        esc(m.get("title") or run_dir.name), sub, status, "".join(items)))
 
 
 def _text(title, text):
@@ -139,6 +146,10 @@ img.still { width: 100%; border-radius: 8px; border: 1px solid var(--line); }
 .slides { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
 img.slide { width: 100%; border-radius: 8px; border: 1px solid var(--line); }
 .meta { color: var(--muted); font-size: 13px; margin-top: 8px; }
+.status { font-size: 13px; margin: -6px 0 12px; color: var(--muted); }
+ol.crit { margin: 0; padding-left: 20px; font-size: 13px; color: var(--muted); }
+ol.crit li { margin: 6px 0; } ol.crit b { color: var(--text); font-weight: 600; margin-right: 6px; }
+.status.bad { color: var(--bad); }
 .bad { color: var(--bad); margin-top: 4px; }
 .why { color: var(--muted); margin: 8px 0 0; }
 a.file { display: inline-block; margin-top: 6px; font-size: 13px; color: var(--muted); font-feature-settings: "calt" 0; }

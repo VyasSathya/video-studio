@@ -23,6 +23,26 @@ for driving web UIs, Kokoro for voices and Whisper for word-level captions.
 Synthetic voices are labeled as synthetic in every video that uses them. The last three samples use a
 public-domain NASA event (Scott Kelly's year in space) from Wikimedia Commons, fetched on first run.
 
+## Skills
+
+Claude Code and Codex skills live in `skills/` (with `.claude/skills/` pointing at them):
+
+| Skill | What it makes | Code |
+|---|---|---|
+| `product-launch` | faceless launch film from real screens, Linear/Raycast/Arc look, 16:9 and 9:16, with a blind-judge rubric | `studio/launch.py`, `capture.mjs`, `verify.py` |
+| `edit-video` | the five steps: transcribe, cut, plan beats from a plain brief, compose, verify in a logged loop | `edit.py`, `beats.py`, `styles.py`, `verify.py` |
+| `whiteboard`, `course` | hand-drawn board takeovers and half boards; rounded speaker crop with big takeaways | `styles.py` |
+| `fast-short` | 9:16 short cut on a 120 bpm beat, whoosh on each cut | `shortform.py`, `sound.py` |
+| `story-reel` | a folder of recordings to one story | `storyreel.py` |
+| `inspiration-to-skill` | measure a video you like, write a style skill, fold feedback in after each run | `inspire.py` |
+| `gather-assets`, `sound` | real captures, public-domain stills, gated AI clips; beats, effects, ducking, licences | `assets.py`, `sound.py`, `music.py` |
+| `motion-showreel` | fast reel of several products (written, not yet run) | `launch.py` |
+
+The verification loop is the part that makes the output good: stills at every beat, deterministic gates
+(`hyperframes check --strict`, copy lint, beat grid, ffprobe, black, freeze, silence, loudness), then a blind
+judge (a fresh agent that sees only the frames, the brief and the rubric, never the maker's log), at most five
+rounds, every round in `critiques.jsonl`.
+
 ## Three pipelines, no human step
 
 Every run writes its work to `D:\video-studio-work\runs\<run>` (or `STUDIO_WORK`), a `manifest.json` of what

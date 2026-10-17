@@ -1,0 +1,46 @@
+{
+ "product": "crewboard",
+ "tokens": {
+  "bg": "oklch(0.145 0 0)",
+  "fg": "oklch(0.985 0 0)",
+  "accent": "oklch(0.7 0.14 290)",
+  "font": "Inter",
+  "mono": "Geist Mono",
+  "radius": 14
+ },
+ "features": [
+  {
+   "title": "Every session, live",
+   "shot": "overview",
+   "focus_from": "capture"
+  },
+  {
+   "title": "What each one is doing",
+   "shot": "session",
+   "focus": [
+    712,
+    990,
+    820,
+    330
+   ]
+  },
+  {
+   "title": "Answer what's waiting",
+   "shot": "now",
+   "focus": [
+    712,
+    270,
+    900,
+    290
+   ],
+   "cursor_from": "capture"
+  }
+ ],
+ "end": {
+  "title": "crewboard",
+  "sub": "python -m crewboard --open"
+ },
+ "music": null,
+ "voice": null,
+ "_sources": "tokens: crewboard/web/index.html dark theme (--bg, --fg, --waiting); screens: python -m crewboard serve --demo captured by studio/capture.mjs; the session and now focus rects are the to-do/agents block and the three questions, measured on the captures"
+}

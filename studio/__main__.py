@@ -13,6 +13,8 @@
     python -m studio repurpose talk.mp4 [--clips 3 --credit C]   long video to clips + post drafts
     python -m studio review run_dir [run_dir ...]       rebuild review.html (one dir) or review-all.html
     python -m studio cost [--seconds 30]               what each paid piece would cost for one short
+    python -m studio inspire ref.mp4 [--keep]          measure a reference video for a style skill
+    python -m studio story DIR [--credit C]           a folder of recordings to one story reel
 Work files go to STUDIO_WORK (default D:/video-studio-work when D: exists); --out picks the run folder.
 """
 import argparse
@@ -128,7 +130,26 @@ def main(argv=None):
     p.add_argument("dirs", nargs="+")
     p = sub.add_parser("cost")
     p.add_argument("--seconds", type=float, default=30)
+    p = sub.add_parser("inspire")
+    p.add_argument("src")
+    p.add_argument("--out")
+    p.add_argument("--keep", action="store_true", help="keep the reference file (default: delete after measuring)")
+    p = sub.add_parser("story")
+    p.add_argument("folder")
+    p.add_argument("--credit")
+    p.add_argument("--out")
     a = ap.parse_args(argv)
+    if a.cmd == "story":
+        from . import review, storyreel
+        out = a.out or str(media.work_dir("story-" + __import__("time").strftime("%Y%m%d-%H%M%S")))
+        storyreel.run(a.folder, out, credit=a.credit)
+        print(review.page(out))
+        return 0
+    if a.cmd == "inspire":
+        from . import inspire
+        out = a.out or str(media.work_dir("inspire-" + __import__("pathlib").Path(a.src).stem))
+        print(json.dumps(inspire.study(a.src, out, keep=a.keep), indent=1))
+        return 0
     if a.cmd in ("rawcut", "short", "repurpose", "review", "cost"):
         return run_pipeline(a)
     if a.cmd == "health":

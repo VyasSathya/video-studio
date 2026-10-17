@@ -19,6 +19,8 @@ Prices read from the official pages on 2026-10-17. One short = 30 s, 9:16, about
 | fal Veo 3.1 Fast | top-tier generated footage with sound | $0.10/s ($0.15/s with sound) | $3.00 | not stated |
 | fal Seedance 2.5 (480p) | a whole 30 s generated clip in one call | about $0.22/s | $6.62 | not stated |
 | fal MiniMax Music 3 | a song with vocals (needs lyrics) | $0.002/s | $0.06 | not stated |
+| kie.ai Kling 3.0 Pro (1080p) | the same Kling footage, 20 percent cheaper than fal; one key for many models | $0.09/s ($0.135/s with sound) | $2.70 | 80 credits (about $0.40) |
+| kie.ai Veo 3.1 Fast | Veo footage, priced per clip up to 8 s | $0.30 per clip (720p) | about $1.20 | same |
 | Blotato (posting, reference) | scheduling and posting to social sites | $29/month minimum for the API | flat | trial has no API |
 
 Notes that matter before saying yes:
@@ -26,6 +28,10 @@ Notes that matter before saying yes:
 - fal says its Veo 3.1 endpoints will be removed on 2026-11-17.
 - Kling image-to-video takes its shape from the image: give it a 9:16 still.
 - Suno has no official public API. Unofficial wrappers are not used.
+- kie.ai is a reseller in front of the model makers (one more party holding the prompt and image); its credits
+  are prepaid, never expire, and failed tasks are not charged. Its API answers HTTP 200 even on errors; the
+  adapter checks the `code` field.
+- Free alternatives come first in every pipeline: real captures, public-domain Commons stills, local music.
 - An avatar or a voice clone is only ever of a person who has agreed to it.
 
 Sources: help.heygen.com/en/articles/10060327-heygen-api-pricing-explained, developers.heygen.com,

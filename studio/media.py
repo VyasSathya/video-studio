@@ -20,9 +20,13 @@ def ffmpeg_bin() -> str:
 
 
 def work_root() -> Path:
-    """STUDIO_WORK, else D:/video-studio-work when a D: drive exists, else build/ in the repo."""
-    return Path(os.getenv("STUDIO_WORK") or (r"D:\video-studio-work" if os.name == "nt" and Path("D:/").exists()
-                                             else str(ROOT / "build")))
+    """STUDIO_WORK, else D:/video-studio-work when a D: drive exists with at least 5 GB free, else build/ in
+    the repo."""
+    if os.getenv("STUDIO_WORK"):
+        return Path(os.getenv("STUDIO_WORK"))
+    if os.name == "nt" and Path("D:/").exists() and shutil.disk_usage("D:/").free > 5 * 1024 ** 3:
+        return Path(r"D:\video-studio-work")
+    return ROOT / "build"
 
 
 def work_dir(name: str) -> Path:

@@ -8,6 +8,11 @@ Used as dependencies (not copied into this repo):
 - ffmpeg (GPL build from BtbN/FFmpeg-Builds), downloaded by setup.ps1, not redistributed.
 - Kokoro-FastAPI and speaches (Whisper) run as local servers; Ollama for the local text model.
 
+- Fonts from Fontsource (npm): Geist and Geist Mono (SIL Open Font License, The Geist Project Authors), Caveat
+  (SIL Open Font License); embedded into compositions as woff2.
+- Sound effects: the set bundled with HyperFrames media-use, from Pixabay under the Pixabay Content License (free
+  use in rendered videos, no attribution required; not redistributed by this repo as files).
+
 Ideas we re-implemented in our own code (no code copied), with thanks:
 - video-use, MIT, Copyright (c) 2026 Browser Use (https://github.com/browser-use/video-use): verbatim
   word-level transcripts for editing, 30 ms fades at every splice, and the filmstrip-over-waveform view of an
@@ -22,6 +27,13 @@ Ideas we re-implemented in our own code (no code copied), with thanks:
 - OpenShorts, MIT, Copyright (c) 2024 OpenShorts (https://github.com/mutonby/openshorts): scoring
   sentence-aligned candidate windows with a text model and snapping clips to real word boundaries
   (studio/picks.py clips()). Its main app is not used (it depends on AGPL-3.0 ultralytics).
+
+- Product launch rules (skills/product-launch): measured from six official launch films (Linear, Framer, The
+  Browser Company, Raycast, Apple) for reference only; their files were deleted after measuring and nothing of
+  theirs (footage, music, branding, words) is used.
+
+Optional, not included (need an account): Nate Herk's free HyperFrames skills and Scrollcraft are behind his
+Skool community and an email opt-in; the owner can add them by hand.
 
 Not used: Remotion (source-available, company licence above three people), Blotato's skills (no licence),
 voice or avatar clones of anyone.

@@ -1,0 +1,14 @@
+{
+ "url": "http://127.0.0.1:7795/",
+ "width": 1440,
+ "height": 900,
+ "scale": 2,
+ "colorScheme": "dark",
+ "settle": 1.2,
+ "shots": [
+  {"name": "overview", "steps": [], "focus": "#live"},
+  {"name": "session", "steps": [{"click": "[data-live=\"c:demo-dark\"]", "after": 1.2}], "focus": "#main", "cursor": "[data-live=\"c:demo-dark\"]"},
+  {"name": "task", "steps": [{"click": "[data-sel=\"flaky-checkout\"]", "after": 1.2}], "focus": "#main", "cursor": "[data-sel=\"flaky-checkout\"]"},
+  {"name": "now", "steps": [{"click": "[data-mode=\"now\"]", "after": 1.2}], "focus": "#now", "cursor": "[data-v=\"Yes\"]"}
+ ]
+}

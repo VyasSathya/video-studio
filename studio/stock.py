@@ -28,6 +28,17 @@ def _clean(s):
 
 
 def find(query, out_dir, min_w=1200, avoid=()):
+    """The first free image for the query, else for its longest word alone."""
+    hit = _find(query, out_dir, min_w, avoid)
+    words = sorted(re.findall(r"[A-Za-z]{3,}", query), key=lambda w: (not w[0].isupper(), -len(w)))
+    for w in (words if len(words) > 1 else []):   # names first ("Mars" before "planet"), then longer words
+        if hit:
+            break
+        hit = _find(w, out_dir, min_w, avoid)
+    return hit
+
+
+def _find(query, out_dir, min_w=1200, avoid=()):
     res = _get({"action": "query", "generator": "search", "gsrnamespace": 6, "gsrlimit": 20,
                 "gsrsearch": "filetype:bitmap " + query, "prop": "imageinfo",
                 "iiprop": "url|size|extmetadata|mime", "iiurlwidth": 1600})
@@ -40,6 +51,9 @@ def find(query, out_dir, min_w=1200, avoid=()):
             continue
         if p["title"] in avoid:
             continue
+        want = [w for w in re.findall(r"[a-z]{3,}", query.lower()) if w not in ("photo", "picture", "image", "the", "and")]
+        if want and not all(w in p["title"].lower() for w in want):
+            continue                               # the file must be what was asked for, by its own title
         url = ii.get("thumburl") or ii["url"]
         out_dir = Path(out_dir)
         out_dir.mkdir(parents=True, exist_ok=True)
