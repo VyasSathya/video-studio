@@ -23,7 +23,7 @@ from pathlib import Path
 
 from . import hf, media, music
 
-VERSION = "2"   # 2: soft edge falloff where the screen bleeds off frame (after crewboard round 5)
+VERSION = "3"   # 3: words and end card start hidden (staggered reveal fix)
 BPM = 120
 
 
@@ -262,16 +262,16 @@ TEMPLATE = r"""<!doctype html>
               color-mix(in oklch, var(--bg) 60%, transparent) 86%, transparent); }
   .v #topfade { top: auto; bottom: 0; height: 22%; background: linear-gradient(to top, var(--bg) 25%, transparent); }
   .title { position: absolute; font-weight: 650; letter-spacing: -0.035em; line-height: 1.02; opacity: 0; }
-  .title .w { display: inline-block; }
+  .title .w { display: inline-block; opacity: 0; }
   .h .title { left: 96px; top: 50%; transform: translateY(-50%); font-size: 84px; max-width: 600px; }
   .v .title { left: 72px; right: 72px; top: 19%; font-size: 92px; }
   #end { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
          background: var(--bg); opacity: 0; }
-  #end h1 { font-weight: 600; letter-spacing: -0.045em; line-height: 1; }
+  #end h1 { font-weight: 600; letter-spacing: -0.045em; line-height: 1; opacity: 0; }
   .h #end h1 { font-size: 168px; } .v #end h1 { font-size: 150px; }
   #end .sub { margin-top: 44px; font-family: "__MONO__", ui-monospace, monospace; letter-spacing: -0.01em;
               padding: 16px 26px; border-radius: 12px; border: 1px solid color-mix(in oklch, var(--fg) 16%, transparent);
-              color: color-mix(in oklch, var(--fg) 86%, transparent); }
+              color: color-mix(in oklch, var(--fg) 86%, transparent); opacity: 0; }
   .h #end .sub { font-size: 38px; } .v #end .sub { font-size: 34px; }
 </style>
 </head>

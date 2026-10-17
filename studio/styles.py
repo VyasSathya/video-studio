@@ -201,27 +201,27 @@ TEMPLATE = r"""<!doctype html>
   .whiteboard .bt.side { left: 50%; right: 0; top: 0; bottom: 120px; }
   .course .bt.side { left: 52%; right: 70px; top: 120px; bottom: 170px; }
   .course .bt.full { left: 110px; right: 560px; top: 200px; bottom: 260px; }
-  .hand { font-family: Caveat, cursive; color: var(--ink); line-height: 1; }
+  .hand { font-family: Caveat, cursive; color: var(--ink); line-height: 1; clip-path: inset(0 100% 0 0); }
   .hand.big { font-size: 190px; font-weight: 700; margin-bottom: -170px; position: relative; z-index: 1; }
   .hand.mid { font-size: 128px; font-weight: 700; text-align: center; max-width: 1100px; margin-top: -10px; }
   .drawn { display: flex; flex-direction: column; align-items: center; }
   .hlist { display: flex; flex-direction: column; gap: 26px; }
   .hrow { display: flex; align-items: center; gap: 20px; } .hrow .hand { font-size: 84px; font-weight: 600; }
-  .photo { position: relative; background: #fff; padding: 18px 18px 64px; box-shadow: 0 18px 40px rgba(0,0,0,.18);
+  .photo { opacity: 0; position: relative; background: #fff; padding: 18px 18px 64px; box-shadow: 0 18px 40px rgba(0,0,0,.18);
            transform: rotate(-2.5deg); }
   .photo img { width: 620px; height: 420px; object-fit: cover; display: block; }
   .photo .tape { position: absolute; left: 50%; top: -18px; width: 150px; height: 38px; margin-left: -75px;
                  background: rgba(255, 236, 170, .75); transform: rotate(3deg); }
   .photo .pcap { position: absolute; left: 0; right: 0; bottom: 12px; text-align: center; font-family: Caveat, cursive;
                  font-size: 42px; color: var(--ink); }
-  .glass { background: rgba(255,255,255,.10); border: 1px solid rgba(255,255,255,.22); border-radius: 28px;
+  .glass { opacity: 0; background: rgba(255,255,255,.10); border: 1px solid rgba(255,255,255,.22); border-radius: 28px;
            backdrop-filter: blur(22px) saturate(1.4); box-shadow: inset 0 1px 0 rgba(255,255,255,.35), 0 30px 70px rgba(0,0,0,.35);
            color: #f6f6f8; padding: 44px 52px; width: 100%; }
   .glass.num .v { font-size: 200px; font-weight: 700; letter-spacing: -0.05em; line-height: 1; text-align: center; }
   .glass.take .k { font-size: 26px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
   .glass.take .v { margin-top: 16px; font-size: 84px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; }
   .glass.list { display: flex; flex-direction: column; gap: 30px; }
-  .glass.list .li { display: flex; align-items: center; gap: 24px; font-size: 60px; font-weight: 650; letter-spacing: -0.02em; }
+  .glass.list .li { opacity: 0; display: flex; align-items: center; gap: 24px; font-size: 60px; font-weight: 650; letter-spacing: -0.02em; }
   .glass.list .li i { width: 18px; height: 18px; border-radius: 50%; background: var(--accent); flex: none; }
   .glass.imgcard { padding: 18px; } .glass.imgcard img { width: 100%; height: 420px; object-fit: cover; border-radius: 16px; display: block; }
   .glass.imgcard .pcap { font-size: 40px; font-weight: 650; padding: 18px 10px 4px; }
