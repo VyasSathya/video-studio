@@ -19,6 +19,19 @@ def ffmpeg_bin() -> str:
     return shutil.which("ffmpeg") or "ffmpeg"
 
 
+def work_root() -> Path:
+    """STUDIO_WORK, else D:/video-studio-work when a D: drive exists, else build/ in the repo."""
+    return Path(os.getenv("STUDIO_WORK") or (r"D:\video-studio-work" if os.name == "nt" and Path("D:/").exists()
+                                             else str(ROOT / "build")))
+
+
+def work_dir(name: str) -> Path:
+    """Scratch space for one run, under work_root()/runs."""
+    p = work_root() / "runs" / name
+    p.mkdir(parents=True, exist_ok=True)
+    return p
+
+
 def ffprobe_bin() -> str:
     f = Path(ffmpeg_bin())
     p = f.with_name(f.name.replace("ffmpeg", "ffprobe"))
@@ -58,6 +71,23 @@ def mix(clips, total: float, out, rate: int = 48000) -> None:
     graph = ";".join(parts) + ";" + "".join("[a%d]" % i for i in range(n)) + \
         "amix=inputs=%d:normalize=0:duration=longest,apad,atrim=0:%.3f,alimiter=limit=0.95[out]" % (n, total)
     run(args + ["-filter_complex", graph, "-map", "[out]", "-ar", rate, "-ac", 1, out])
+
+
+def mux_loud(video, audio, out, target=-14.0, peak=-1.5, crf=20, max_rate="8M"):
+    """Picture from `video`, sound from `audio`, two-pass loudnorm to `target` LUFS (one pass undershoots),
+    re-encoded to H.264 at a size meant for sharing."""
+    import json as _json
+    p = subprocess.run([ffmpeg_bin(), "-hide_banner", "-nostats", "-i", str(audio), "-af",
+                        "loudnorm=I=%g:TP=%g:LRA=11:print_format=json" % (target, peak), "-f", "null", "-"],
+                       capture_output=True, text=True)
+    m = _json.loads(p.stderr[p.stderr.rfind("{"):p.stderr.rfind("}") + 1])
+    af = ("loudnorm=I=%g:TP=%g:LRA=11:measured_I=%s:measured_TP=%s:measured_LRA=%s:measured_thresh=%s:"
+          "offset=%s:linear=true" % (target, peak, m["input_i"], m["input_tp"], m["input_lra"], m["input_thresh"],
+                                     m["target_offset"]))
+    run(["-i", video, "-i", audio, "-map", "0:v", "-map", "1:a", "-c:v", "libx264", "-crf", crf, "-maxrate", max_rate,
+         "-bufsize", "16M", "-preset", "slow", "-pix_fmt", "yuv420p", "-af", af, "-ar", 48000, "-c:a", "aac",
+         "-b:a", "192k", "-shortest", "-movflags", "+faststart", out])
+    return Path(out)
 
 
 def gif(src, out, start: float = 0, length: float = None, width: int = 960, fps: int = 15, colors: int = 160,

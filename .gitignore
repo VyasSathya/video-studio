@@ -7,3 +7,4 @@ projects/*/out/
 projects/*/qa/
 projects/*/render.log
 .hyperframes/
+build/

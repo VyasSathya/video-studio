@@ -15,6 +15,8 @@ def npx():
 def hyperframes(args, cwd, check=True):
     env = media.env_with_ffmpeg()
     env.setdefault("HYPERFRAMES_SKIP_SKILLS", "1")
+    env.setdefault("HYPERFRAMES_NO_TELEMETRY", "1")
+    env.setdefault("DO_NOT_TRACK", "1")
     cmd = [npx(), "--prefix", str(ROOT), "hyperframes"] + [str(a) for a in args]
     return subprocess.run(cmd, cwd=str(cwd), env=env, check=check)
 

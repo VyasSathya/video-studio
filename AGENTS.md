@@ -4,6 +4,15 @@
   real (a live mic, a login), compose it from the real pieces and say so on screen and in the README.
 - Never put words in a real person's mouth. A synthetic voice is labeled synthetic in the video itself and in
   any README that shows it. Never present a synthetic voice as the project's author.
+- Model-written words are checked before they are used: narration is a third-person narrator, every scripted
+  beat quotes its facts and every number is in that quote, every callout or title shown over footage uses only
+  words said at that moment, every clip boundary is a real sentence boundary. What fails is dropped, never
+  "fixed" by hand into a claim nobody made.
+- Footage edits keep what the speaker said: cut silence, fillers, stutters, restarts and retakes, never words
+  that change the meaning. Every cut is listed in the run's manifest and review page.
+- Nothing is posted from here. Output goes to the run folder and its review page; posting is a separate
+  pipeline with an approval queue.
+- Paid adapters (studio/paid.py) stay dry runs unless the owner has said yes to that spend.
 - Do not edit captured output. Filter it in the command you show (e.g. `| select a, b`) instead.
 - No personal data in frames or files: no home-folder paths, user names, emails, real chats or private work.
   Run a demo from example data or a throwaway copy; check the frames before shipping.
