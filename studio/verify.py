@@ -81,7 +81,8 @@ def still_times(shots):
         if s["kind"] == "establish":
             ts += [round(s["start"] + 0.2, 2), round(s["end"] - 0.1, 2)]
         elif s["kind"] == "feature":
-            ts += [round(s["start"] + 0.12, 2), round(s["start"] + 1.0, 2), round(s["end"] - 0.08, 2)]
+            # the cut itself (before any title starts), the title landed, the last frame before the next cut
+            ts += [round(s["start"] + 0.04, 2), round(s["start"] + 1.0, 2), round(s["end"] - 0.08, 2)]
         else:
             ts += [round(s["start"] + 0.2, 2), round(s["end"] - 0.15, 2)]
     return ts
@@ -117,6 +118,40 @@ def tile(frames, out, cols=4, width=640, labels=None):
             d.text((x, y + 4), "%d  %s" % (i + 1, labels[i]), fill=(200, 200, 210))
     sheet.save(out)
     return Path(out)
+
+
+def blank_frames(frames, min_std=6.0, min_edges=0.002):
+    """Frames with nothing on them (a composition whose script failed renders bare background, and
+    `hyperframes check --strict` can still pass it). Returns the paths that look empty."""
+    import numpy as np
+    from PIL import Image, ImageFilter
+    bad = []
+    for f in frames:
+        g = Image.open(f).convert("L").resize((480, 270))
+        a = np.asarray(g, dtype=np.float32)
+        e = np.asarray(g.filter(ImageFilter.FIND_EDGES), dtype=np.float32)
+        if a.std() < min_std or (e > 40).mean() < min_edges:
+            bad.append(str(f))
+    return bad
+
+
+def packet_pair(out_dir, sheets_a, sheets_b, brief_text, question):
+    """Two packets for a pairwise blind judgment, one per order (A first, then B first); each order goes to its
+    own fresh judge. A win counts only if it survives the swap."""
+    out = []
+    for k, (first, second) in enumerate(((sheets_a, sheets_b), (sheets_b, sheets_a)), 1):
+        d = Path(out_dir) / ("order-%d" % k)
+        d.mkdir(parents=True, exist_ok=True)
+        for p in d.glob("*"):
+            p.unlink()
+        for i, s in enumerate(first):
+            (d / ("X-%d.png" % (i + 1))).write_bytes(Path(s).read_bytes())
+        for i, s in enumerate(second):
+            (d / ("Y-%d.png" % (i + 1))).write_bytes(Path(s).read_bytes())
+        (d / "brief.txt").write_text(brief_text + "\n\nQuestion: " + question +
+                                     "\nAnswer X or Y, then three reasons, each with a frame.", encoding="utf-8")
+        out.append(d)
+    return out
 
 
 def packet(out_dir, sheets, brief_text, rubric_path):

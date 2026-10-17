@@ -83,8 +83,17 @@ way (shot lengths, tempo and cuts on beat, palette, motion, busyness, two contac
    the brief and `rubric.md`. A separate agent call (a fresh subagent; ideally also a non-Claude model) gets that
    folder path and nothing else: no plan, no log, no earlier verdict. Judges that see the maker's log pass
    failed clips most of the time.
-6. Gate: every rubric item PASS and overall at least 8. Otherwise fix the first failing item and go back to 2.
-   At most 5 rounds; a film that still fails is dropped, not shipped.
+   Also run `verify.blank_frames(stills)`: a composition whose script fails renders bare background, and
+   `hyperframes check --strict` can still pass it.
+6. Gate, in this order of trust:
+   - pairwise first: `verify.packet_pair(dir, new_sheets, reference_sheets, brief, question)` against the
+     asset it would replace (the current README GIF, or the last approved film), each order to its own fresh
+     judge; the new film must win both orders. This was stable in practice (8 of 8 on the Talkover film).
+   - the absolute rubric (every item PASS, overall at least 8) is advisory until a judge agrees with Vyas's own
+     approve/reject labels (kappa 0.6 or more on 30 to 50 past items). Fresh judges on near-identical cuts
+     scored 5 to 8 failures and asked for opposite fixes, so a rubric FAIL is a list of things to look at, not
+     proof. Fix what more than one judge raises.
+   At most 5 rounds either way; a film that loses pairwise is dropped, not shipped. Vyas makes the last call.
 7. Every round goes to `critiques.jsonl` with `verify.log(run_dir, round, kind, findings, fixes)`.
 8. Once a product has an approved film, new films are compared to it pairwise, both orders; a win counts only
    if it survives the swap.
@@ -111,3 +120,16 @@ way (shot lengths, tempo and cuts on beat, palette, motion, busyness, two contac
   - screens bleeding off frame slice text at the edges ("Decic"): version 2 fades the stage into the ground over
     the outer 6 to 7 percent of the frame (not yet judged; judge it on the next film)
   - word count is a gate in code (`verify.gates(..., titles=...)`, at most 5 words)
+  - a staggered reveal with immediateRender:false shows not-yet-started words at full opacity: everything that
+    animates in starts hidden in CSS (fixed in launch version 3, found by content-studio's judge)
+- 2026-10-17 Talkover film (launch-example session, 7 rounds, 5 judged; lost the rubric, won pairwise 8 of 8):
+  - one text focus per shot; close-ups about 1.0 s, shots where the viewer reads UI 2.0 to 2.5 s; any UI caption
+    line that appears holds at least 1.4 s
+  - all 16:9 feature titles on one left margin; only the end card is centred; words fade as they rise
+  - frame edges must not cut through buttons at any moment of a push: measure the controls and nudge each
+    close-up so both edges fall in gaps (or let the edge falloff hide them)
+  - the end card holds about 2.3 s after its last line lands, then fades; a wordmark reveal starts on the cut
+  - a lit environment beats one dark field: let the room light take some of the product's state colour
+  - what every judge raised is likely real: small UI captions in 9:16, a feature with no visual subject beyond
+    type, a look that reads as a polished app zoom rather than art-directed
+  - GIFs with grain: denoise before the palette and cut the GIF to the feature section at 960 px

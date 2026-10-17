@@ -47,6 +47,22 @@ class Launch(unittest.TestCase):
         self.assertGreaterEqual(shots[-1]["end"] - shots[-1]["start"], 2.5)
 
 
+class Blank(unittest.TestCase):
+    def test_bare_background_is_caught(self):
+        import tempfile
+        from pathlib import Path
+        from PIL import Image, ImageDraw
+        with tempfile.TemporaryDirectory() as d:
+            empty = Path(d) / "empty.png"
+            Image.new("RGB", (960, 540), (12, 12, 14)).save(empty)
+            full = Path(d) / "full.png"
+            im = Image.new("RGB", (960, 540), (12, 12, 14))
+            ImageDraw.Draw(im).rectangle([100, 100, 800, 400], outline=(240, 240, 240), width=4)
+            ImageDraw.Draw(im).text((140, 200), "Every session, live", fill=(250, 250, 250))
+            im.save(full)
+            self.assertEqual(verify.blank_frames([empty, full]), [str(empty)])
+
+
 class Copy(unittest.TestCase):
     def test_title_rules(self):
         self.assertEqual(verify.copy_lint(["Every session, live"], max_words=5), [])
