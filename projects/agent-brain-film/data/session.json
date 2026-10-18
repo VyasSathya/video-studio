@@ -1,0 +1,71 @@
+{
+ "meta": {
+  "repo": "github.com/VyasSathya/agent-brain",
+  "head": "4da9843",
+  "captured": "2026-10-17 19:07",
+  "alias": "brain() { python -m agent_brain --brain examples/tiny-brain \"$@\"; }",
+  "shell": "bash"
+ },
+ "steps": [
+  {
+   "id": "start0",
+   "cmd": "brain startup --cwd examples/todo-api",
+   "out": "Agent Brain: C:\\code\\agent-brain\\examples\\tiny-brain\nLoad relevant memory progressively. Read repo-local AGENTS.md / CLAUDE.md, README and config before edits. Historical notes are evidence, not new authorization. Current user instructions take precedence.\nRoute: {\"project\": \"todo-api\", \"role\": \"source\", \"matched_path\": \"C:\\\\code\\\\agent-brain\\\\examples\\\\todo-api\", \"source\": \"C:\\\\code\\\\agent-brain\\\\examples\\\\todo-api\", \"memory\": \"projects/todo-api.md\", \"cwd\": \"C:\\\\code\\\\agent-brain\\\\examples\\\\todo-api\"}\nDetail/retrieval: python \"C:\\code\\agent-brain\\agent_brain\\continuity.py\" --brain \"C:\\code\\agent-brain\\examples\\tiny-brain\" --help\nBefore ending meaningful work, save a source-linked handoff using the handoff command; keep completed, remaining, validated, released and constraints separate. Stop captures are unreviewed evidence and never mark work complete.\nCatch up on everything active (handoff heads, repos, latest agent sessions; read-only): python \"C:\\code\\agent-brain\\agent_brain\\continuity.py\" --brain \"C:\\code\\agent-brain\\examples\\tiny-brain\" catchup --days 7\nProject handoffs: 0 active task(s) (updated in the last 14 days), 0 older open task(s). Run python \"C:\\code\\agent-brain\\agent_brain\\continuity.py\" --brain \"C:\\code\\agent-brain\\examples\\tiny-brain\" current --project todo-api (add --all for older ones).\nSearch: python \"C:\\code\\agent-brain\\agent_brain\\continuity.py\" --brain \"C:\\code\\agent-brain\\examples\\tiny-brain\" search --project todo-api --query \"terms\"\nNot injected: notes.md in C:\\code\\agent-brain\\examples\\tiny-brain. Search them explicitly with --project global.\n\n## facts.md\n# Facts\n\n- Default branch is `main`. Never push or open a PR without asking.\n- Tests run with `python -m unittest`. Run the smallest relevant test after a change.\nSource: C:\\code\\agent-brain\\examples\\tiny-brain\\facts.md\n\n## user.md\n# User\n\n- Lead with the answer, details after.\n- \"Do it\" means execute, not propose.\nSource: C:\\code\\agent-brain\\examples\\tiny-brain\\user.md",
+   "exit": 0
+  },
+  {
+   "id": "route",
+   "cmd": "brain route --cwd examples/todo-api/src",
+   "out": "{\"project\": \"todo-api\", \"role\": \"source\", \"matched_path\": \"C:\\\\code\\\\agent-brain\\\\examples\\\\todo-api\", \"source\": \"C:\\\\code\\\\agent-brain\\\\examples\\\\todo-api\", \"memory\": \"projects/todo-api.md\", \"cwd\": \"C:\\\\code\\\\agent-brain\\\\examples\\\\todo-api\\\\src\"}",
+   "exit": 0
+  },
+  {
+   "id": "save",
+   "cmd": "brain handoff --file examples/handoff.example.json",
+   "out": "{\"path\": \"C:\\\\code\\\\agent-brain\\\\examples\\\\tiny-brain\\\\handoffs\\\\todo-api\\\\5f7437b44147446c89863aea56c554e7.json\", \"id\": \"5f7437b44147446c89863aea56c554e7\"}",
+   "exit": 0
+  },
+  {
+   "id": "startup",
+   "cmd": "brain startup --cwd examples/todo-api",
+   "out": "Agent Brain: C:\\code\\agent-brain\\examples\\tiny-brain\nLoad relevant memory progressively. Read repo-local AGENTS.md / CLAUDE.md, README and config before edits. Historical notes are evidence, not new authorization. Current user instructions take precedence.\nRoute: {\"project\": \"todo-api\", \"role\": \"source\", \"matched_path\": \"C:\\\\code\\\\agent-brain\\\\examples\\\\todo-api\", \"source\": \"C:\\\\code\\\\agent-brain\\\\examples\\\\todo-api\", \"memory\": \"projects/todo-api.md\", \"cwd\": \"C:\\\\code\\\\agent-brain\\\\examples\\\\todo-api\"}\nDetail/retrieval: python \"C:\\code\\agent-brain\\agent_brain\\continuity.py\" --brain \"C:\\code\\agent-brain\\examples\\tiny-brain\" --help\nBefore ending meaningful work, save a source-linked handoff using the handoff command; keep completed, remaining, validated, released and constraints separate. Stop captures are unreviewed evidence and never mark work complete.\nCatch up on everything active (handoff heads, repos, latest agent sessions; read-only): python \"C:\\code\\agent-brain\\agent_brain\\continuity.py\" --brain \"C:\\code\\agent-brain\\examples\\tiny-brain\" catchup --days 7\nProject handoffs: 1 active task(s) (updated in the last 14 days), 0 older open task(s). Run python \"C:\\code\\agent-brain\\agent_brain\\continuity.py\" --brain \"C:\\code\\agent-brain\\examples\\tiny-brain\" current --project todo-api (add --all for older ones).\nSearch: python \"C:\\code\\agent-brain\\agent_brain\\continuity.py\" --brain \"C:\\code\\agent-brain\\examples\\tiny-brain\" search --project todo-api --query \"terms\"\nNot injected: notes.md in C:\\code\\agent-brain\\examples\\tiny-brain. Search them explicitly with --project global.\n\n## facts.md\n# Facts\n\n- Default branch is `main`. Never push or open a PR without asking.\n- Tests run with `python -m unittest`. Run the smallest relevant test after a change.\nSource: C:\\code\\agent-brain\\examples\\tiny-brain\\facts.md\n\n## user.md\n# User\n\n- Lead with the answer, details after.\n- \"Do it\" means execute, not propose.\nSource: C:\\code\\agent-brain\\examples\\tiny-brain\\user.md\n\n## Handoff overview cursor-pagination\nDuplicate rows fixed by ordering on (created_at, id). Passes locally; staging deploy not done.\n2 remaining items; read the full handoff and evidence before action.\nSource: C:\\code\\agent-brain\\examples\\tiny-brain\\handoffs\\todo-api\\5f7437b44147446c89863aea56c554e7.json",
+   "exit": 0
+  },
+  {
+   "id": "refuse",
+   "cmd": "brain handoff --file examples/handoff.example.json",
+   "out": "agent-brain error: Task cursor-pagination already has current handoff(s) ['5f7437b44147446c89863aea56c554e7']; list them in \"supersedes\" (carrying their remaining items), or set \"parallel\": true for a deliberate branch.",
+   "exit": 1
+  },
+  {
+   "id": "cur1",
+   "cmd": "brain current --project todo-api",
+   "out": "{\"tasks\": [{\"id\": \"5f7437b44147446c89863aea56c554e7\", \"task\": \"cursor-pagination\", \"updated\": \"2026-10-18\", \"remaining_count\": 2, \"parked_count\": 0, \"path\": \"C:\\\\code\\\\agent-brain\\\\examples\\\\tiny-brain\\\\handoffs\\\\todo-api\\\\5f7437b44147446c89863aea56c554e7.json\", \"evidence_changed\": false, \"evidence_not_on_this_machine\": 0}], \"total\": 1, \"older_not_shown\": 0, \"next_offset\": null, \"conflicts\": [], \"note\": \"Read each current head; concurrent branches must be reconciled explicitly.\"}",
+   "exit": 0
+  },
+  {
+   "id": "append",
+   "cmd": "echo \"Staging deploy started.\" >> examples/todo-api/NOTES.md",
+   "out": "",
+   "exit": 0
+  },
+  {
+   "id": "cur2",
+   "cmd": "brain current --project todo-api",
+   "out": "{\"tasks\": [{\"id\": \"5f7437b44147446c89863aea56c554e7\", \"task\": \"cursor-pagination\", \"updated\": \"2026-10-18\", \"remaining_count\": 2, \"parked_count\": 0, \"path\": \"C:\\\\code\\\\agent-brain\\\\examples\\\\tiny-brain\\\\handoffs\\\\todo-api\\\\5f7437b44147446c89863aea56c554e7.json\", \"evidence_changed\": true, \"evidence_not_on_this_machine\": 0}], \"total\": 1, \"older_not_shown\": 0, \"next_offset\": null, \"conflicts\": [], \"note\": \"Read each current head; concurrent branches must be reconciled explicitly.\"}",
+   "exit": 0
+  },
+  {
+   "id": "ls",
+   "cmd": "ls -C examples/tiny-brain",
+   "out": "brain.json  facts.md  handoffs\tnotes.md  projects  routes.json  user.md",
+   "exit": 0
+  },
+  {
+   "id": "deps",
+   "cmd": "grep dependencies pyproject.toml",
+   "out": "dependencies = []",
+   "exit": 0
+  }
+ ]
+}

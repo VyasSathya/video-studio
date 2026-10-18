@@ -1,0 +1,15 @@
+[
+ {"round": "r1", "checks": "25/25 pass", "pairwise": "lost both orders (pair-1 Y=Talkover, pair-2 X=Talkover)",
+  "rubric": "6/10, FAIL 12 13 14",
+  "next": "Filtered commands to their proof, cold-start opener, lit windows, cards centred"},
+ {"round": "r2", "checks": "25/25 pass after GIF and contrast fixes", "pairwise": "lost both orders",
+  "rubric": "6/10, FAIL 3 14", "next": "Push onto proof rows, depth-of-field on the rest, neutral light"},
+ {"round": "r3", "checks": "24/25 (check --strict runtime under load), re-run ok", "pairwise": "lost both orders",
+  "rubric": "6/10, FAIL 8 12 13 14", "next": "README commands unfiltered, windows onto real output, tinted proof bands"},
+ {"round": "r4", "checks": "20/25 (overlay count, contrast, GIF 9 MB)", "pairwise": "lost both orders",
+  "rubric": "6/10, FAIL 8 13 14", "next": "Tour from C:\\code\\agent-brain, whole lines only, all titles top-left, brighter scene"},
+ {"round": "r5", "checks": "21/25 (blur overlay count)", "pairwise": "lost both orders (cap reached)",
+  "rubric": "6/10, FAIL 8 14", "next": "Blur grouped per run of rows; re-rendered, gates only, not judged"},
+ {"round": "final", "checks": "see checks.jsonl round final", "pairwise": "not judged again (five-round cap)",
+  "rubric": "", "next": "Delivered for Vyas to judge; nothing committed, pushed or posted"}
+]

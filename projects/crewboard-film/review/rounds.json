@@ -1,0 +1,9 @@
+[
+ {"round": "r1", "checks": "20/25 (gate bugs, fixed)", "pairwise": "not run", "judge": "not judged", "next": "Shorter scrim, focal blocks above it, two-line title, camera anchors"},
+ {"round": "r2", "checks": "25/25", "pairwise": "split: order 1 Talkover, order 2 crewboard", "judge": "overall 5, 8 fails", "next": "No light theme, brighter opening, solid title bands, new agents line, terminal subject, titles <= 5 words, list shots pushed in"},
+ {"round": "r3", "checks": "25/25 (freeze and GIF size caught and fixed)", "pairwise": "split: order 1 Talkover, order 2 crewboard", "judge": "overall 6, 5 fails", "next": "Lit rim and backlight, whole 9:16 page, no room blobs, terminal pre-typed, heavier surround blur, to-do list shot"},
+ {"round": "r4", "checks": "25/25 (one check timeout rerun)", "pairwise": "split: order 1 crewboard, order 2 Talkover", "judge": "overall 6, 5 fails", "next": "Lighter studio backdrop, no coloured glow, terminal in front of the page, status dots before titles, 9:16 perspective opening"},
+ {"round": "r5", "checks": "25/25 (one lint rerun)", "pairwise": "split: order 1 Talkover, order 2 crewboard", "judge": "overall 6, 3 fails", "next": "16:9 two columns (title left, UI right), strict top/bottom edges, agents with their session, terminal alone"},
+ {"round": "r6", "checks": "25/25", "pairwise": "split: order 1 Talkover, order 2 crewboard", "judge": "overall 6, 3 fails (fifth judged round, cap reached)", "next": "Terminal on the cut, backdrop settles after the opening; not judged again"},
+ {"round": "r6b", "checks": "25/25 (r6b-final in checks.jsonl)", "pairwise": "", "judge": "not judged (cap)", "next": "Delivered for Vyas to judge; nothing posted, pushed or committed"}
+]
