@@ -7,10 +7,10 @@ from pathlib import Path
 from fontTools.ttLib import TTFont
 HERE=Path(__file__).resolve().parent;sys.path.insert(0,str(HERE.parents[1]))
 from studio import media,verify
-RUN=Path('C:/video-studio-work/runs/portfolio-landscape/standup');SOURCE=RUN/'original-studio-download.mp4'
-CUTS=[dict(start=0.,end=81.2,reason='Complete opening sequence, through the arranged-marriage response. The next topic begins at 81.48s in the local transcript.'),dict(start=408.,end=469.,reason='Complete club-seating sequence, from its setup through the audience response. The next setup begins at 469.36s in the source captions.')]
+BASE=Path('C:/video-studio-work/runs/portfolio-landscape');RUN=BASE/'standup-after-zipper';SOURCE=BASE/'standup/original-studio-download.mp4'
+CUTS=[dict(start=16.,end=81.2,reason='Owner-requested start after the zipper joke, before the next complete setup at about16.32s. Through the arranged-marriage response; next topic begins at81.48s.'),dict(start=408.,end=469.,reason='Complete club-seating sequence, from its setup through the audience response. The next setup begins at469.36s.')]
 CROP=[0,535,720,405]
-FOLLOW=json.loads((RUN/'camera-follow.json').read_text())
+FOLLOW=json.loads((BASE/'standup/camera-follow.json').read_text())
 
 def crop_y(source_t):
     if source_t<408:return 535
@@ -23,7 +23,7 @@ def run(args):return subprocess.run([str(a) for a in args],cwd=RUN,check=True)
 def main():
     a=argparse.ArgumentParser();a.add_argument('--stills',action='store_true');args=a.parse_args();RUN.mkdir(exist_ok=True)
     rawframes=RUN/'crop-check';rawframes.mkdir(exist_ok=True)
-    times=[2,17,28,54,63,78,410,429,450,458,462,463,464,465,466,467,468];frames=[]
+    times=[17,28,54,63,78,410,429,435,440,450,458,462,463,464,465,466,467,468];frames=[]
     for i,t in enumerate(times):
         target=rawframes/f'frame-{i:02d}.png';run([media.ffmpeg_bin(),'-y','-v','error','-ss',t,'-i',SOURCE,'-frames:v','1','-vf',f'crop=720:405:0:{crop_y(t)},scale=1920:1080:flags=lanczos',target]);frames.append(target)
     verify.tile(frames,RUN/'crop-sheet.png',cols=3,labels=[str(t)+'s source' for t in times])
@@ -49,5 +49,5 @@ def main():
     m['camera_follow']=dict(anchors=FOLLOW['anchors'],method='Source camera-follow reframing. Detector suggestions were reviewed as composition aids; false-positive body detections are not accepted as a framing test. Dense source frames around the late camera movement were visually inspected.')
     (RUN/'edit-manifest.json').write_text(json.dumps(m,indent=2),encoding='utf-8')
     tech=verify.technical(final,m);(RUN/'technical.json').write_text(json.dumps(tech,indent=2));verify.log(RUN,1,'render',tech)
-    ts=[.5,17,27,54,64,78,82,100,125,total-3,total-1];frames=media.frames(final,RUN/'frames',ts);verify.tile(frames,RUN/'strip.png',cols=3,labels=[str(round(t,2))+'s edit' for t in ts]);print(json.dumps(tech))
+    ts=[.5,10,20,35,45,63,66,85,105,total-3,total-1];frames=media.frames(final,RUN/'frames',ts);verify.tile(frames,RUN/'strip.png',cols=3,labels=[str(round(t,2))+'s edit' for t in ts]);print(json.dumps(tech))
 if __name__=='__main__':main()
