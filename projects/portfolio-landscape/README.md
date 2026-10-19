@@ -26,6 +26,9 @@ The production scripts also include:
   original performance audio is mastered without internal time edits or added audience response.
 - `render-overview.py`: readable six-second project chapters from existing landscape films. Gameplay has
   additional time. Stand-up speech is not cut into the montage.
+- `render-current-games.py`: continuous current-source bot gameplay, captured by the existing Unity capture
+  runner. Hook Wars replaces the duplicate dodgeball chapter; it remains truthfully identified as another mode
+  in Brainrot Brawl. Captures are camera presentations, not game changes or phone-performance acceptance.
 - `score-overview.py`: original local electric-piano, bass and drum arrangement. Accepts any overview duration.
 - `replace-overview-score.py`: masters replacement audio and copies the encoded picture stream unchanged.
   It verifies the picture hash, duration, integrated loudness and true peak after muxing.
