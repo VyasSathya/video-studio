@@ -35,6 +35,5 @@ Source code panels are explicitly historical public-source studies; they are not
 Specific reading holds are declared only after inspecting the source and encoded frames. Moving gameplay
 is never exempted wholesale from freeze checks.
 
-The owner explicitly requested continued revision loops beyond the default five-round skill cap on
-2026-10-18. Rejected cuts remain outside the website draft while specific visual findings are revised.
+Rejected cuts remain outside the website draft while specific visual findings are revised.
 Blind contact-sheet reviews establish sampled composition, not audio, continuous motion or joke quality.
