@@ -40,3 +40,9 @@ is never exempted wholesale from freeze checks.
 
 Rejected cuts remain outside the website draft while specific visual findings are revised.
 Blind contact-sheet reviews establish sampled composition, not audio, continuous motion or joke quality.
+
+## Current portfolio overview
+
+`render-overview.py` now builds all sixteen selected case chapters in 103.4 seconds. Set PORTFOLIO_SITE_ROOT to the reviewed website checkout. `--resume` reuses cached encoded chapters with matching duration; delete a changed chapter before resuming. The video-studio chapter introduces the Talkover input and complete whiteboard output; Mad Balls is explicitly identified as inside Brainrot Brawl. Flower Girls and source-study labels sit below their navigation/content. Technical holds remain specific, never a blanket gameplay exemption. Audio is an original local instrumental score; all source dialogue is excluded from this montage.
+
+The website autoplays the overview muted, with a sound toggle and native controls. Reduced motion keeps manual playback. Individual stand-up excerpts retain uninterrupted source speech and are separate from the overview. R1 and R2 review findings are retained in the run; final swapped packets compare the expanded overview with the previous nine-case cut. Sampled visual comparisons do not certify continuous motion or subjective owner approval.
